@@ -8,3 +8,6 @@ const mongodbConfig =()=>{
 }
 
 module.exports=mongodbConfig
+
+
+// mongodb+srv://mern2504cit2:dhwQcgvi1aJfhFxM@cluster0.4ygdj26.mongodb.net/test?appName=Cluster0

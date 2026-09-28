@@ -35,7 +35,9 @@ const registrationController = async (req, res) => {
                 data.save()
                 res.send({
                     username:data.username,
-                    email:data.email
+                    email:data.email,
+                    success:"data send successfully"
+                    
                 })
                 
                 

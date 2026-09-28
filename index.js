@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express');
+const cors = require('cors');
 const  route  = require('./route');
 const mongodbConfig = require('./dbConfigs/mongodbConfig');
 const app = express()
@@ -12,6 +13,7 @@ mongodbConfig()
 
 // Middleware
 app.use(express.json())
+app.use(cors())
 app.use(route)
 
 app.get('/', (req, res) => {
