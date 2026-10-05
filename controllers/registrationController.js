@@ -2,6 +2,9 @@ const emailRegex = require("../utiles/emailRegex")
 const passwordRegex = require("../utiles/passwordRegex")
 const UserSchema = require('../models/userSchema')
 const bcrypt = require('bcrypt');
+const otpGenerator = require('otp-generator');
+const emailSender = require("../utiles/emailSender");
+
 
 
 const registrationController = async (req, res) => {
@@ -26,19 +29,42 @@ const registrationController = async (req, res) => {
         } else {
 
             bcrypt.hash(password, 10, function (err, hash) {
+                let otp = otpGenerator.generate(6,
+                    {
+                        upperCaseAlphabets: false,
+                        specialChars: false,
+                        lowerCaseAlphabets: false
+                    })
+
                 const data = new UserSchema({
-                    username:username,
-                    email:email,
-                    password:hash
+                    username: username,
+                    email: email,
+                    password: hash,
+                    otp: otp,
+                    
                 })
 
                 data.save()
                 res.send({
-                    username:data.username,
-                    email:data.email,
-                    success:"registration successfully"
-                
+                    username: data.username,
+                    email: data.email,
+                    success: "registration successfully"
+
                 })
+
+
+                // Send Email
+                emailSender(email)
+
+
+              
+
+
+
+
+
+
+
 
             });
 
