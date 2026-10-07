@@ -1,7 +1,8 @@
 const nodemailer = require("nodemailer");
 
-const emailSender = async (email) => {
-    const transporter = nodemailer.createTransport({
+const emailSender = async (email,otp) => {
+   try {
+     const transporter = nodemailer.createTransport({
         host: "mern2504cit2@gmail.com",
         service: "gmail",
         auth: {
@@ -14,8 +15,19 @@ const emailSender = async (email) => {
         to: email,
         subject: "Email Verification",
         text: "Hello world?",
-        html: `<div style="width:400px;height:350px;background:#0ff;border-radius:10px;padding:20px 40px;text-align:center"><h1>Email Verification</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ratione, sed, eius qui quibusdam eosdignissimos modi. Vel repellendus molestiae deserunt consectetur sit neque magnam, possimus ab voluptates autem, earum ut, sapiente impedit nemo maxime repudiandae.</p><button style="margin:10px 0;background:#00f;padding:10px 30px;border:0;color:#fff;border-radius:10px">Verify Email</button><br><br><div style=display:flex;column-gap:20px;justify-content:center><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a></div></div>`,
+        html: `<div style="width:400px;height:350px;background:#0ff;border-radius:10px;padding:20px 40px;text-align:center"><h1>Email Verification</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ratione, sed, eius qui quibusdam eosdignissimos modi. Vel repellendus molestiae deserunt consectetur sit neque magnam, possimus ab voluptates autem, earum ut, sapiente impedit nemo maxime repudiandae.</p><p style="margin:10px 0;background:#00f;padding:10px 30px;border:0;color:#fff;border-radius:10px">${otp}</p><br><br><div style=display:flex;column-gap:20px;justify-content:center><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a></div></div>`,
     });
+
+    console.log("Email sent:", info.messageId);
+        return true;
+
+
+    
+   } catch (error) {
+    console.error("Email sending failed:", error.message);
+        return false; //
+    
+   }
 
 }
 

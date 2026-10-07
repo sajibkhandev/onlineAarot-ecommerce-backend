@@ -41,6 +41,7 @@ const registrationController = async (req, res) => {
                     email: email,
                     password: hash,
                     otp: otp,
+                   
                     
                 })
 
@@ -54,7 +55,9 @@ const registrationController = async (req, res) => {
 
 
                 // Send Email
-                emailSender(email)
+                emailSender(email,otp)
+                
+                
 
 
               
