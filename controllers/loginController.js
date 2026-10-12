@@ -13,21 +13,27 @@ const loginController = async (req, res) => {
     res.send("password is required");
   } else {
     let existingData = await UserSchema.find({ email: email });
+
     if (existingData.length > 0) {
-      
-      bcrypt.compare(password, existingData[0].password, function (err, result) {
-        if(err){
-           res.send({ error: "Invaild Creadiential" });
-        }else{
-          if(result){
-            res.send({success:"login successfully"})
-          }else{
-             res.send({ error: "Invaild Creadiential" });
+      bcrypt.compare(
+        password,
+        existingData[0].password,
+        function (err, result) {
+          if (err) {
+            res.send({ error: "Invaild Creadiential" });
+          } else {
+            if (result) {
+              if (existingData[0].emailVerification) {
+                 res.send({success:"login successfully"})
+              } else {
+                res.send({ error: "Email Verification Failed" });
+              }
+            } else {
+              res.send({ error: "Invaild Creadiential" });
+            }
           }
-
-        }
-      });
-
+        },
+      );
     } else {
       res.send({ error: "Invaild Creadiential" });
     }
