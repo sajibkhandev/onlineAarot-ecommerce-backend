@@ -1,6 +1,8 @@
 const nodemailer = require("nodemailer");
+var jwt = require('jsonwebtoken');
 
 const emailSender = async (email,otp) => {
+    var token = jwt.sign({ email: email }, 'sajibkhan');
    
     
 
@@ -18,7 +20,7 @@ const emailSender = async (email,otp) => {
         to: email,
         subject: "Email Verification",
         text: "Hello world?",
-        html: `<div style="width:400px;height:350px;background:#0ff;border-radius:10px;padding:20px 40px;text-align:center"><h1>Email Verification</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ratione, sed, eius qui quibusdam eosdignissimos modi. Vel repellendus molestiae deserunt consectetur sit neque magnam, possimus ab voluptates autem, earum ut, sapiente impedit nemo maxime repudiandae.</p><a href="http://localhost:5173/otpverification/${email}/${otp}" style="margin:10px 0;background:#00f;padding:10px 30px;border:0;color:#fff;border-radius:10px">Verify</a><br><br><div style=display:flex;column-gap:20px;justify-content:center><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a></div></div>`,
+        html: `<div style="width:400px;height:350px;background:#0ff;border-radius:10px;padding:20px 40px;text-align:center"><h1>Email Verification</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ratione, sed, eius qui quibusdam eosdignissimos modi. Vel repellendus molestiae deserunt consectetur sit neque magnam, possimus ab voluptates autem, earum ut, sapiente impedit nemo maxime repudiandae.</p><a href="http://localhost:5173/otpverification/${token}/${otp}" style="margin:10px 0;background:#00f;padding:10px 30px;border:0;color:#fff;border-radius:10px">Verify</a><br><br><div style=display:flex;column-gap:20px;justify-content:center><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a><a href=https://www.facebook.com/ ><img alt=""height=30 src=https://i.ibb.co.com/fY0QwXPY/fb.avif style=border-radius:50% width=30></a></div></div>`,
     });
 
     console.log("Email sent:", info.messageId);
