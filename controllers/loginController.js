@@ -20,22 +20,32 @@ const loginController = async (req, res) => {
         existingData[0].password,
         function (err, result) {
           if (err) {
-            res.send({ error: "Invaild Creadiential" });
+            res.send({ error: "Invaild Creadiential0" });
           } else {
             if (result) {
               if (existingData[0].emailVerification) {
-                 res.send({success:"login successfully"})
+              res.send({
+                  success:"login successfully",
+                  id:existingData[0]._id,
+                  email:existingData[0].email,
+                  username:existingData[0].username,
+                  emailVerification:existingData[0].emailVerification,
+
+                })
+                
+                console.log(existingData);
+                
               } else {
                 res.send({ error: "Email Verification Failed" });
               }
             } else {
-              res.send({ error: "Invaild Creadiential" });
+              res.send({ error: "Invaild Creadiential1" });
             }
           }
         },
       );
     } else {
-      res.send({ error: "Invaild Creadiential" });
+      res.send({ error: "Invaild Creadiential2" });
     }
   }
 };
