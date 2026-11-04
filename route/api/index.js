@@ -5,11 +5,14 @@ const Login =require('./auths/login')
 const Otp =require('./auths/otp')
 const Forgetpassword =require('./auths/forgetpassword')
 const Changepassword =require('./auths/changepassword')
+const Createcategory =require('./products/createcategory')
 
 _.use('/authentication',Registration)
 _.use('/authentication',Login)
 _.use('/authentication',Otp)
 _.use('/authentication',Forgetpassword)
 _.use('/authentication',Changepassword)
+
+_.use('/product',Createcategory)
 
 module.exports=_
