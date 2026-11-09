@@ -1,7 +1,7 @@
 const CategorySchema =require('../models/categorySchema')
 
 const createCategoryController=async(req,res)=>{
-    let { categoryname }=req.body
+    let { categoryname,categoryowerid }=req.body
     console.log(categoryname);
   let existingCategory =  await CategorySchema.find({categoryname:categoryname})
   console.log();
@@ -10,7 +10,8 @@ const createCategoryController=async(req,res)=>{
 
   }else{
     let category =  new CategorySchema({
-        categoryname
+        categoryname,
+        categoryowerid
     })
 
     category.save()

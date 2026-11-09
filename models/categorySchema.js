@@ -8,7 +8,7 @@ const categorySchema = new Schema({
         unique:true
 
     },
-    categoryid:{
+    categoryowerid:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"UserList"
     }
