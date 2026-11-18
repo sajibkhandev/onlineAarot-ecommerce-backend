@@ -7,6 +7,8 @@ const Forgetpassword =require('./auths/forgetpassword')
 const Changepassword =require('./auths/changepassword')
 const Createcategory =require('./products/createcategory')
 const Viewcategory =require('./products/viewcategory')
+const Deletecategory =require('./products/deletecategory')
+const Updatecategory =require('./products/updatecategory')
 
 _.use('/authentication',Registration)
 _.use('/authentication',Login)
@@ -16,5 +18,7 @@ _.use('/authentication',Changepassword)
 
 _.use('/product',Createcategory)
 _.use('/product',Viewcategory)
+_.use('/product',Deletecategory)
+_.use('/product',Updatecategory)
 
 module.exports=_
